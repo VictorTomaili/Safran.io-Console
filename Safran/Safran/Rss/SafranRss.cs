@@ -23,21 +23,21 @@ namespace SafranConsole.Safran.Rss
             var reader = XmlReader.Create(FeedUri);
             var load = SyndicationFeed.Load(reader);
             reader.Close();
-            
-            if (load != null)
+
+            if (load == null) 
+                return;
+
+            foreach (var item in load.Items)
             {
-                foreach (var item in load.Items)
+                var link = item.Links.FirstOrDefault();
+                FeedItems.Add(new SafranFeedItem
                 {
-                    var link = item.Links.FirstOrDefault();
-                    FeedItems.Add(new SafranFeedItem
-                    {
-                        Title = item.Title.Text,
-                        Description = item.Summary.Text,
-                        Guid = item.Id,
-                        Link = link != null ? link.Uri.ToString() : null,
-                        PubDate = item.PublishDate.ToString()
-                    });
-                }
+                    Title = item.Title.Text,
+                    Description = item.Summary.Text,
+                    Guid = item.Id,
+                    Link = link != null ? link.Uri.ToString() : null,
+                    PubDate = item.PublishDate.ToString()
+                });
             }
         }
 

@@ -21,7 +21,7 @@ namespace SafranConsole.Console
         private void ConsoleOnConsoleClear()
         {
             Console.Write("Safran.io");
-            Console.Write("Console");
+            Console.Write("CLI Reader");
             Console.Write("------------------------------------------");
         }
 
