@@ -70,7 +70,6 @@ namespace SafranConsole.Console
 
             ConsoleOutput.Add(ConsoleInput);
             OnCommandReceived(ConsoleInput);
-            ConsoleInput = String.Empty;
         }
 
         public void RegisterCommand(ConsoleCommand consoleCommand)

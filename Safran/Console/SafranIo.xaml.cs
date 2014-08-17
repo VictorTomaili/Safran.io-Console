@@ -15,6 +15,7 @@ namespace SafranConsole.Console
             Loaded += MainWindow_Loaded;
             Console.ConsoleClear += ConsoleOnConsoleClear;
             Console.Clear();
+            Console.ShowHelp();
         }
         
         private void ConsoleOnConsoleClear()

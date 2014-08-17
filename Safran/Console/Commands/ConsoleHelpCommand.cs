@@ -3,19 +3,25 @@ namespace SafranConsole.Console.Commands
 {
     public class ConsoleHelpCommand : ConsoleCommand
     {
+        public const string command = "help";
+        public const string description = "Yardım Bilgisini Görüntüler";
+
         public ConsoleHelpCommand()
         {
-            this.Command = "help";
-            this.Description = "Yardım Bilgisini Görüntüler";
-            this.Action = Help;
+            Command = command;
+            Description = description;
+            Action = Help;
         }
 
         private void Help()
         {
-            foreach (var command in this.Console.CommandList)
+            Console.Clear();
+            Console.Write("----------------- HELP ------------------");
+            foreach (var cmd in this.Console.CommandList)
             {
-                Console.Write(string.Format("{0}\t: {1}", command.Key, command.Value.Description));
+                Console.Write(string.Format("{0}\t: {1}", cmd.Key, cmd.Value.Description));
             }
+            Console.Write("-----------------------------------------");
         }
     }
 }

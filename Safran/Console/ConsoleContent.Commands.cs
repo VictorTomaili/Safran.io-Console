@@ -1,5 +1,7 @@
 ﻿
 using System;
+using System.Linq;
+using SafranConsole.Console.Commands;
 
 namespace SafranConsole.Console
 {
@@ -16,11 +18,24 @@ namespace SafranConsole.Console
             ConsoleOutput.Add(text);
         }
 
+        public void Execute(string text)
+        {
+            ConsoleInput = text;
+            RunCommand();
+        }
+
         public void Focus()
         {
             Scroller.ScrollToEnd();
             InputBlock.Focus();
             InputBlock.CaretIndex = Int32.MaxValue;
+        }
+
+        public void ShowHelp()
+        {
+            var helpCommand = CommandList.ToList().FirstOrDefault(s => s.Key == ConsoleHelpCommand.command);
+            if (helpCommand.Value != null)
+                helpCommand.Value.Action();
         }
     }
 }

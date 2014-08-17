@@ -1,4 +1,8 @@
-﻿using System.ComponentModel;
+﻿
+using System;
+using System.ComponentModel;
+using System.Data;
+using System.Linq;
 using System.Windows.Input;
 
 namespace SafranConsole.Console
@@ -9,9 +13,22 @@ namespace SafranConsole.Console
         {
             if (e.Key != Key.Enter)
                 return;
-
+            
             ConsoleInput = InputBlock.Text;
-            RunCommand();
+#if !DEBUG
+            try
+            {
+#endif
+                RunCommand();
+#if !DEBUG
+            }
+            catch (Exception ex)
+            {
+                Write(ex.Message);
+            }
+#endif
+
+            ConsoleInput = String.Empty;
             InputBlock.Focus();
             Scroller.ScrollToBottom();
         }
@@ -30,14 +47,16 @@ namespace SafranConsole.Console
         {
             if (ConsoleCommandReceived != null)
                 ConsoleCommandReceived(command);
-            
-            if (!CommandList.ContainsKey(ConsoleInput))
-            {
-                Write(string.Format("\"{0}\" Komut Bulunamadı", command));
-                return;
-            }
-            
-            CommandList[command].Action();
+
+            var commandParts = command.Split(' ').ToList();
+            var cmd = commandParts[0];
+            commandParts.Remove(commandParts[0]);
+
+            if (!CommandList.ContainsKey(cmd))
+                throw new InvalidExpressionException(string.Format("\"{0}\" Komut Bulunamadı", command));
+
+            CommandList[cmd].Parameter = commandParts;
+            CommandList[cmd].Action();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

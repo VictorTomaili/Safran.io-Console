@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -58,8 +59,15 @@
     <Compile Include="Console\Commands\ConsoleExitCommand.cs" />
     <Compile Include="Console\ConsoleContent.Events.cs" />
     <Compile Include="Console\ConsoleContent.Commands.cs" />
-    <Compile Include="Safran\SafranCommands\SafranListCommand.cs" />
-    <Compile Include="Safran\SafranIo.cs" />
+    <Compile Include="Safran\Interface\ISafranDataProvider.cs" />
+    <Compile Include="Safran\Interface\ISafranFeedItem.cs" />
+    <Compile Include="Safran\Rss\SafranFeedItem.cs" />
+    <Compile Include="Safran\Rss\SafranRss.cs" />
+    <Compile Include="Safran\SafranCommands\SafranOpenCommand.cs" />
+    <Compile Include="Safran\SafranCommands\SafranRefreshCommand.cs" />
+    <Compile Include="Safran\SafranCommands\SafranGetFeedCommand.cs" />
+    <Compile Include="Safran\SafranIo.Static.cs" />
+    <Compile Include="Safran\Safran.cs" />
     <Page Include="Console\SafranIo.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

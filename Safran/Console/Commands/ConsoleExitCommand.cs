@@ -5,11 +5,14 @@ namespace SafranConsole.Console.Commands
 {
     public class ConsoleExitCommand : ConsoleCommand
     {
+        public const string command = "exit";
+        public const string description = "Uygulamayı Kapatır";
+
         public ConsoleExitCommand()
         {
-            this.Command = "exit";
-            this.Description = "Uygulamayı Kapatır";
-            this.Action = () => Environment.Exit(0);
+            Command = command;
+            Description = description;
+            Action = () => Environment.Exit(0);
         }
     }
 }

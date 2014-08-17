@@ -3,11 +3,14 @@ namespace SafranConsole.Console.Commands
 {
     public class ConsoleClearCommand : ConsoleCommand
     {
+        public const string command = "clear";
+        public const string description = "Ekranı Temizler";
+
         public ConsoleClearCommand()
         {
-            this.Command = "clear";
-            this.Description = "Ekranı Temizler";
-            this.Action = () => Console.Clear();
+            Command = command;
+            Description = description;
+            Action = () => Console.Clear();
         }
     }
 }
