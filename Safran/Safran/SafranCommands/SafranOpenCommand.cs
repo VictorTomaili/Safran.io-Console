@@ -12,9 +12,9 @@ namespace SafranConsole.Safran.SafranCommands
     {
         public const string command = "open";
 
-        public const string description = "Safran konu başlığını açar. Örn: " + command +
-                                          " [0-9] | " + command +
-                                          " [0-9] link";
+        public const string description = "Safran konu başlığını açar. Örn: \"" + command +
+                                          " [number]\" ,\"" + command +
+                                          " [number] link\"";
         
         public SafranOpenCommand()
         {
