@@ -61,7 +61,7 @@
     <Compile Include="Console\ConsoleContent.Commands.cs" />
     <Compile Include="Safran\Interface\ISafranDataProvider.cs" />
     <Compile Include="Safran\Interface\ISafranFeedItem.cs" />
-    <Compile Include="Safran\Rss\SafranFeedItem.cs" />
+    <Compile Include="Safran\SafranFeedItem.cs" />
     <Compile Include="Safran\Rss\SafranRss.cs" />
     <Compile Include="Safran\SafranCommands\SafranOpenCommand.cs" />
     <Compile Include="Safran\SafranCommands\SafranRefreshCommand.cs" />
@@ -76,7 +76,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Console\ConsoleCommand.cs" />
+    <Compile Include="Console\Interface\IConsoleCommand.cs" />
     <Compile Include="Console\ConsoleContent.cs" />
     <Compile Include="Console\SafranIo.xaml.cs">
       <DependentUpon>SafranIo.xaml</DependentUpon>

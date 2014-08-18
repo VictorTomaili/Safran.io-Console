@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SafranConsole.Console;
+using SafranConsole.Console.Interface;
 
 namespace SafranConsole.Safran.SafranCommands
 {
-    public class SafranGetFeedCommand : ConsoleCommand
+    public class SafranGetFeedCommand : IConsoleCommand
     {
         public const string command = "getfeed";
         public const string description = "Safran Konu Başlıklarını Getirir";
@@ -30,5 +32,11 @@ namespace SafranConsole.Safran.SafranCommands
                     item.Title));
             }
         }
+
+        public string Command { get; set; }
+        public string Description { get; set; }
+        public Action Action { get; set; }
+        public IEnumerable<string> Parameter { get; set; }
+        public ConsoleContent Console { get; set; }
     }
 }

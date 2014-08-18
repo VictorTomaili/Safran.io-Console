@@ -1,7 +1,11 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using SafranConsole.Console.Interface;
+
 namespace SafranConsole.Console.Commands
 {
-    public class ConsoleHelpCommand : ConsoleCommand
+    public class ConsoleHelpCommand : IConsoleCommand
     {
         public const string command = "help";
         public const string description = "Yardım Bilgisini Görüntüler";
@@ -23,5 +27,11 @@ namespace SafranConsole.Console.Commands
             }
             Console.Write("-----------------------------------------");
         }
+
+        public string Command { get; set; }
+        public string Description { get; set; }
+        public Action Action { get; set; }
+        public IEnumerable<string> Parameter { get; set; }
+        public ConsoleContent Console { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using SafranConsole.Safran.Interface;
 
-namespace SafranConsole.Safran.Rss
+namespace SafranConsole.Safran
 {
     public class SafranFeedItem : ISafranFeedItem
     {

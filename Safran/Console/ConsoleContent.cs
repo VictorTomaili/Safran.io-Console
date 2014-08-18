@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using SafranConsole.Console.Interface;
 
 namespace SafranConsole.Console
 {
@@ -12,18 +13,17 @@ namespace SafranConsole.Console
     {
         public ConsoleContent(TextBox inpuTextBox, ScrollViewer scrollViewer)
         {
-            var commands =
-                Application.ResourceAssembly.GetTypes()
-                    .Where(s => s.BaseType == typeof (ConsoleCommand))
-                    .OrderBy(s => s.Name);
-
+            var commands = Application.ResourceAssembly.GetTypes()
+                .Where(s => typeof (IConsoleCommand).IsAssignableFrom(s) &&
+                            s != typeof (IConsoleCommand));
+            
             foreach (var command in commands)
             {
-                this.RegisterCommand((ConsoleCommand)Activator.CreateInstance(command, new object[] { }));
+                RegisterCommand((IConsoleCommand)Activator.CreateInstance(command, new object[] { }));
             }
 
-            this.InputBlock = inpuTextBox;
-            this.Scroller = scrollViewer;
+            InputBlock = inpuTextBox;
+            Scroller = scrollViewer;
 
             InputBlock.KeyDown += InputBlock_KeyDown;
             InputBlock.Focus();
@@ -72,7 +72,7 @@ namespace SafranConsole.Console
             OnCommandReceived(ConsoleInput);
         }
 
-        public void RegisterCommand(ConsoleCommand consoleCommand)
+        public void RegisterCommand(IConsoleCommand consoleCommand)
         {
             if (CommandList.ContainsKey(consoleCommand.Command))
                 throw new InvalidOperationException(string.Format("Command Already Registered : {0} ",
@@ -82,6 +82,6 @@ namespace SafranConsole.Console
             CommandList.Add(consoleCommand.Command, consoleCommand);   
         }
 
-        public Dictionary<string, ConsoleCommand> CommandList = new Dictionary<string, ConsoleCommand>(); 
+        public Dictionary<string, IConsoleCommand> CommandList = new Dictionary<string, IConsoleCommand>(); 
     }
 }
