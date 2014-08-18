@@ -6,12 +6,12 @@ using SafranConsole.Console.Interface;
 
 namespace SafranConsole.Safran.SafranCommands
 {
-    public class SafranGetFeedCommand : IConsoleCommand
+    public class SafranFeedCommand : IConsoleCommand
     {
-        public const string command = "getfeed";
+        public const string command = "feed";
         public const string description = "Safran Konu Başlıklarını Getirir";
 
-        public SafranGetFeedCommand()
+        public SafranFeedCommand()
         {
             Command = command;
             Description = description;
@@ -20,8 +20,6 @@ namespace SafranConsole.Safran.SafranCommands
 
         private void SafranList()
         {
-            Console.Clear();
-
             var feedList = Safran.io.GetFeedList().ToList();
 
             foreach (var item in feedList)

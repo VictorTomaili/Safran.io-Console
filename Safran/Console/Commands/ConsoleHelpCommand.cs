@@ -19,7 +19,6 @@ namespace SafranConsole.Console.Commands
 
         private void Help()
         {
-            Console.Clear();
             Console.Write("----------------- HELP ------------------");
             foreach (var cmd in this.Console.CommandList)
             {

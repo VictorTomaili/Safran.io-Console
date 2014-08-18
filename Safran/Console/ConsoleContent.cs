@@ -67,7 +67,6 @@ namespace SafranConsole.Console
                 consoleInput = string.Empty;
                 return;
             }
-
             ConsoleOutput.Add(ConsoleInput);
             OnCommandReceived(ConsoleInput);
         }

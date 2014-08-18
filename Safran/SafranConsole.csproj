@@ -59,13 +59,14 @@
     <Compile Include="Console\Commands\ConsoleExitCommand.cs" />
     <Compile Include="Console\ConsoleContent.Events.cs" />
     <Compile Include="Console\ConsoleContent.Commands.cs" />
+    <Compile Include="LinkFinder\LinkFinder.cs" />
     <Compile Include="Safran\Interface\ISafranDataProvider.cs" />
     <Compile Include="Safran\Interface\ISafranFeedItem.cs" />
     <Compile Include="Safran\SafranFeedItem.cs" />
     <Compile Include="Safran\Rss\SafranRss.cs" />
     <Compile Include="Safran\SafranCommands\SafranOpenCommand.cs" />
     <Compile Include="Safran\SafranCommands\SafranRefreshCommand.cs" />
-    <Compile Include="Safran\SafranCommands\SafranGetFeedCommand.cs" />
+    <Compile Include="Safran\SafranCommands\SafranFeedCommand.cs" />
     <Compile Include="Safran\SafranIo.Static.cs" />
     <Compile Include="Safran\Safran.cs" />
     <Page Include="Console\SafranIo.xaml">

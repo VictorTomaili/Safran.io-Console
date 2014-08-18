@@ -4,14 +4,18 @@ using System.Data;
 using System.Linq;
 using SafranConsole.Console;
 using SafranConsole.Console.Interface;
+using SafranConsole.Safran.Interface;
 
 namespace SafranConsole.Safran.SafranCommands
 {
     public class SafranOpenCommand : IConsoleCommand
     {
         public const string command = "open";
-        public const string description = "Safran Konu Başlığını açar Orn: open 1";
 
+        public const string description = "Safran konu başlığını açar. Örn: " + command +
+                                          " [0-9] | " + command +
+                                          " [0-9] link";
+        
         public SafranOpenCommand()
         {
             Command = command;
@@ -21,17 +25,46 @@ namespace SafranConsole.Safran.SafranCommands
 
         private void SafranList()
         {
-            var feedList = Safran.io.GetFeedList().ToList();
-            int idx;
-            if (Parameter == null || !Parameter.Any() || (!Int32.TryParse(Parameter.FirstOrDefault(), out idx)))
+            if(Parameter == null || !Parameter.Any())
                 throw new InvalidExpressionException("Parametre Geçersiz.");
 
-            if((idx -1) > feedList.Count)
-                throw new IndexOutOfRangeException("Başlık Bulunamadı.");
+            var feedList = Safran.io.GetFeedList().ToList();
+            
+            int idx;
+            if (Int32.TryParse(Parameter.ElementAt(0), out idx))
+            {
+                idx--;
+                if ((idx) > feedList.Count)
+                    throw new IndexOutOfRangeException("Başlık Bulunamadı.");
 
-            Console.Clear();
-            Console.Execute(SafranGetFeedCommand.command);
-            System.Diagnostics.Process.Start(feedList[idx - 1].Link);
+                if (Parameter.Count() == 1)
+                {
+                    WriteFeedItem(feedList[idx]);
+                    return;
+                }
+            }
+
+            if(Parameter.ElementAt(1) == "link")
+            {
+                foreach (var url in LinkFinder.Find(feedList[idx].Description))
+                {
+                    System.Diagnostics.Process.Start(url);
+                }
+            }
+        }
+
+        private void WriteFeedItem(ISafranFeedItem item)
+        {
+            Console.NewLine();
+            Console.Write("##################");
+            Console.NewLine();
+            Console.Write("------------------");
+            Console.Write(item.Title);
+            Console.Write("------------------");
+            Console.Write(item.Description.Trim());
+            Console.NewLine();
+            Console.Write("##################");
+            Console.NewLine();
         }
 
         public string Command { get; set; }

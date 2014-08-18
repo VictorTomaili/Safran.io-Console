@@ -2,18 +2,18 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
-        Title="Safran.io" Height="500" Width="760" Background="Black" Foreground="#FFFFC000" FontFamily="Tahoma">
+        Title="Safran.io" Height="500" Width="760" Background="White" Foreground="#F444" FontFamily="Tahoma" FontWeight="Bold">
     <Grid>
-        <ScrollViewer Name="Scroller" Margin="0" Background="Black" Foreground="#FFFFC000" Cursor="IBeam" MouseUp="FocusConsole">
-            <StackPanel Cursor="IBeam" MouseUp="FocusConsole">
-                <ItemsControl ItemsSource="{Binding ConsoleOutput, Mode=OneWay}" Foreground="#FFFFC000" BorderThickness="1,0,0,0">
+        <ScrollViewer Name="Scroller" Margin="0" Background="White" Foreground="#F444" Cursor="IBeam" MouseUp="FocusConsole">
+            <StackPanel Cursor="IBeam" MouseUp="FocusConsole" Margin="0">
+                <ItemsControl ItemsSource="{Binding ConsoleOutput, Mode=OneWay}" Foreground="#F444" BorderThickness="1,0,0,0">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Path=.}" Foreground="#FFFFC000" FontFamily="Tahoma"/>
+                            <TextBlock Text="{Binding Path=.}" Foreground="#F444" FontFamily="Tahoma" FontWeight="Bold" Margin="0,1"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <TextBox Text="{Binding ConsoleInput, Mode=TwoWay}" CaretIndex="{x:Static System:Int32.MaxValue}" Background="Black" Foreground="#FFFFC000" FontFamily="Tahoma" x:Name="InputBlock" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" BorderThickness="0" />
+                <TextBox Text="{Binding ConsoleInput, Mode=TwoWay}" CaretIndex="{x:Static System:Int32.MaxValue}" Background="White" Foreground="#F444" FontFamily="Tahoma" FontWeight="Bold" x:Name="InputBlock" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" BorderThickness="0" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

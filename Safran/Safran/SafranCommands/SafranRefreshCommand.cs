@@ -19,9 +19,8 @@ namespace SafranConsole.Safran.SafranCommands
 
         private void SafranList()
         {
-            Console.Clear();
             Safran.io.Refresh();
-            Console.Execute(SafranGetFeedCommand.command);
+            Console.Execute(SafranFeedCommand.command);
         }
 
         public string Command { get; set; }

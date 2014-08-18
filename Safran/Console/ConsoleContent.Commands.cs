@@ -24,6 +24,11 @@ namespace SafranConsole.Console
             RunCommand();
         }
 
+        public void NewLine()
+        {
+            ConsoleOutput.Add("");
+        }
+
         public void Focus()
         {
             Scroller.ScrollToEnd();
