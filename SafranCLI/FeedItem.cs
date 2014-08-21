@@ -1,8 +1,7 @@
-﻿using SafranConsole.Safran.Interface;
-
-namespace SafranConsole.Safran
+﻿
+namespace SafranCLI
 {
-    public class SafranFeedItem : ISafranFeedItem
+    public class FeedItem
     {
         public string Title { get; set; }
         public string Description { get; set; }

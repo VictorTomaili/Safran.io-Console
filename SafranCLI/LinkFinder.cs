@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace SafranConsole
+namespace SafranCLI
 {
     public static class LinkFinder
     {
@@ -16,3 +16,4 @@ namespace SafranConsole
         }
     }
 }
+ 
