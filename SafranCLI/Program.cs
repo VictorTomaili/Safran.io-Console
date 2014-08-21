@@ -22,16 +22,20 @@ namespace SafranCLI
                 if (options.Feed)
                     foreach (var item in feed)
                         Console.WriteLine("{0} : {1}", feed.IndexOf(item) + 1, GetTitle(item, subStrEnd: 10));
-
+                 
                 if (options.Open > 0)
                 {
                     var item = feed[options.Open - 1];
-                    Console.WriteLine(GetTitle(item));
-                    Console.WriteLine(new string('-', Console.BufferWidth));
-                    Console.WriteLine(item.Description);
 
                     if (options.Link)
                         LinkFinder.Find(item.Description).ForEach(s => System.Diagnostics.Process.Start(s));
+
+                    if (!options.Link)
+                    {
+                        Console.WriteLine(GetTitle(item));
+                        Console.WriteLine(new string('-', Console.BufferWidth));
+                        Console.WriteLine(item.Description);
+                    }
                 }
             }
         }
