@@ -17,15 +17,24 @@ namespace SafranCLI
 
             var feed = RSSRead.GetFeed();
 
-            if (Parser.Default.ParseArguments(args, options))
+            if (new Parser(s =>
+            {
+                s.MutuallyExclusive = true;
+                s.HelpWriter = Console.Error;
+            }).ParseArguments(args, options))
             {
                 if (options.Feed)
+                {
+                    Console.WriteLine(Environment.NewLine);
                     foreach (var item in feed)
+                    {
                         Console.WriteLine("{0} : {1}", feed.IndexOf(item) + 1, GetTitle(item, subStrEnd: 10));
-
+                    }
+                }
                 if (options.Open > 0)
                 {
                     var item = feed[options.Open - 1];
+                    Console.WriteLine(Environment.NewLine);
                     Console.WriteLine(GetTitle(item));
                     Console.WriteLine(new string('-', Console.BufferWidth));
                     Console.WriteLine(item.Description);
@@ -36,6 +45,7 @@ namespace SafranCLI
                     var item = feed[options.Link - 1];
                     LinkFinder.Find(item.Description).ForEach(s => System.Diagnostics.Process.Start(s));
                 }
+                Console.WriteLine(Environment.NewLine);
             }
         }
 

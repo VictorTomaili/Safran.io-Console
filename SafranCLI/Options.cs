@@ -5,16 +5,16 @@ namespace SafranCLI
 {
     public class Options
     {
-        [Option('f', "feed",
+        [Option('f', "feed", MutuallyExclusiveSet = "0",
             HelpText = "Show feed list.")]
         public bool Feed { get; set; }
 
 
-        [Option('o', "open",
+        [Option('o', "open", MutuallyExclusiveSet = "0",
             HelpText = "Open feed item. Usage: -o [number]")]
         public int Open { get; set; }
 
-        [Option('l', "link",
+        [Option('l', "link", MutuallyExclusiveSet = "0",
             HelpText = "Open link in feed description. Usage -l [number]")]
         public int Link { get; set; }
 
